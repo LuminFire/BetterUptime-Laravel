@@ -8,10 +8,9 @@
 # - https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Composer.gitlab-ci.yml
 
 stages:
-  - build
+  - test
   - deploy
 
-# Cache files for use between jobs and pipelines.
 cache:
   key: $CI_BUILD_REF_NAME
   paths:
@@ -19,6 +18,19 @@ cache:
     - node_modules
     - public
     - vendor
+
+Check Security:
+  stage: test
+  script:
+    - /usr/local/bin/security-checker security:check composer.lock
+  interruptible: true
+
+
+Unit and Feature Tests:
+  stage: test
+  script:
+    - ./vendor/phpunit/phpunit/phpunit -v --coverage-text --colors=never --stderr
+  interruptible: true
 
 
 Publish Composer Package:
