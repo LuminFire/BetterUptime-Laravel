@@ -9,6 +9,6 @@ return [
     'heartbeat' => [
         'enabled' => env('BETTER_UPTIME_HEARTBEAT_ENABLED', true),
         'url' => env('BETTER_UPTIME_HEARTBEAT_URL'),
-        'minutes' => env('BETTER_UPTIME_HEARTBEAT_FREQUENCY', '5'),
+        'minutes' => env('BETTER_UPTIME_HEARTBEAT_FREQUENCY', 5),
     ],
 ];
