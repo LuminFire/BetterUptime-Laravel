@@ -11,6 +11,6 @@ class BetterUptimeLaravelFacade extends Facade
 {
     protected static function getFacadeAccessor()
     {
-        return 'betteruptime-laravel';
+        return 'betteruptimelaravel';
     }
 }
