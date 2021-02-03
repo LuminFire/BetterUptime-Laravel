@@ -9,7 +9,7 @@
 
 stages:
   - test
-  - deploy
+  - build
 
 cache:
   key: $CI_BUILD_REF_NAME
@@ -18,13 +18,6 @@ cache:
     - node_modules
     - public
     - vendor
-
-Check Security:
-  stage: test
-  script:
-    - /usr/local/bin/security-checker security:check composer.lock
-  interruptible: true
-
 
 Unit and Feature Tests:
   stage: test
