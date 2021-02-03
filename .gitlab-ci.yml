@@ -22,6 +22,7 @@ cache:
 Unit and Feature Tests:
   stage: test
   script:
+    - composer install --prefer-dist --no-ansi --no-interaction --no-progress
     - ./vendor/phpunit/phpunit/phpunit -v --coverage-text --colors=never --stderr
   interruptible: true
 
