@@ -75,17 +75,17 @@ Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed re
 
 ## Contributing
 
-Please see [CONTRIBUTING](.github/CONTRIBUTING.md) for details.
+Please see [CONTRIBUTING](https://github.com/LuminFire/BetterUptime-Laravel/.github/CONTRIBUTING.md) for details.
 
 ## Security Vulnerabilities
 
-Please review [our security policy](../../security/policy) on how to report security vulnerabilities.
+Please review [our security policy](https://github.com/LuminFire/BetterUptime-Laravel/security/policy) on how to report security vulnerabilities.
 
 ## Credits
 
 - [LuminFire](https://luminfire.com)
 - [Andrew Minion](https://andrewrminion.com/)
-- [All Contributors](../../contributors)
+- [All Contributors](https://github.com/LuminFire/BetterUptime-Laravel/contributors)
 
 ## License
 
