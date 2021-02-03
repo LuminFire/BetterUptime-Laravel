@@ -1,12 +1,12 @@
 {
     "name": "brilliant-packages/betteruptime-laravel",
-    "description": "Prevent Telescope from logging BetterUptime requests, add heartbeat monitoring",
+    "description": "BetterUptime Monitoring and Heartbeats",
     "keywords": [
         "brilliant-packages",
         "betteruptime-laravel",
         "monitoring"
     ],
-    "homepage": "https://github.com/LuminFire/betteruptime-laravel/",
+    "homepage": "https://betteruptime-laravel.brilliantpackages.com/",
     "license": "MIT",
     "authors": [
         {
