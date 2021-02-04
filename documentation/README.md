@@ -8,6 +8,8 @@ This packages provides a route for BetterUptime to monitor and excludes it from 
 
 It also enables BetterUptime heartbeat monitoring.
 
+![cover image](images/BetterUptime-Laravel-OpenGraph.png)
+
 ## Installation
 
 You can install the package via composer:
