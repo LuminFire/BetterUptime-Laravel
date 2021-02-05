@@ -41,18 +41,28 @@ class CustomizationsTest extends TestCase
     {
         Http::fake(['example.com/better-uptime-test' => Http::response()]);
 
-        $test = Artisan::call('better-uptime:ping');
-
-        $this->assertEquals(0, $test);
+        $this->artisan('better-uptime:ping')
+            ->expectsOutput('Status 200')
+            ->assertExitCode(0);
     }
 
     /** @test */
-    public function heartbeat_http_fail()
+    public function heartbeat_http_fail_without_message()
     {
-        Http::fake(['example.com/better-uptime-test' => Http::response(null, 500)]);
+        Http::fake(['example.com/better-uptime-test' => Http::response('', 503)]);
 
-        $test = Artisan::call('better-uptime:ping');
+        $this->artisan('better-uptime:ping')
+            ->expectsOutput('Error code 503')
+            ->assertExitCode(1);
+    }
 
-        $this->assertEquals(1, $test);
+    /** @test */
+    public function heartbeat_http_fail_with_message()
+    {
+        Http::fake(['example.com/better-uptime-test' => Http::response('Down for maintenance', 503)]);
+
+        $this->artisan('better-uptime:ping')
+            ->expectsOutput('Error code 503 with message Down for maintenance')
+            ->assertExitCode(1);
     }
 }

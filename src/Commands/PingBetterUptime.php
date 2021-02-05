@@ -53,7 +53,12 @@ class PingBetterUptime extends Command
         if ($response->successful()) {
             $this->info('Status '.$response->getStatusCode());
         } else {
-            $errorString = 'Error code '.$response->status() .' with message '.$response->body();
+            $errorString = 'Error code '.$response->status();
+
+            if (! empty($response->body())) {
+                $errorString .= ' with message '.$response->body();
+            };
+
             $this->error($errorString);
             Log::warning('PingBetterUptime failed; '.$errorString);
             return 1;
