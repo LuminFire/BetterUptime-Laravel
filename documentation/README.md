@@ -18,8 +18,6 @@ You can install the package via composer:
 composer require brilliant-packages/betteruptime-laravel
 ```
 
-You can publish and run the migrations with:
-
 You can publish the config file with:
 ```bash
 php artisan vendor:publish --provider="BrilliantPackages\BetterUptimeLaravel\BetterUptimeLaravelServiceProvider" --tag="betteruptime-laravel-config"
