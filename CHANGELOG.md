@@ -2,6 +2,10 @@
 
 All notable changes to `betteruptime-laravel` will be documented in this file.
 
+# 1.0.4 - 2021-10-20
+
+- Bugfix: fix facade accessor
+
 # 1.0.3 - 2021-02-05
 
 - Tweak: improve CLI command error message
