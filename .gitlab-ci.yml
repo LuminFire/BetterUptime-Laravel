@@ -24,7 +24,7 @@ Unit and Feature Tests:
   stage: test
   tags:
     - docker
-  image: edbizarro/gitlab-ci-pipeline-php:7.4-fpm
+  image: git.luminfire.net:5005/luminfire/ops/devops/docker/stacks/edbizarro-gitlab-ci-pipeline-php:7.4-fpm
   script:
     - composer install --prefer-dist --no-ansi --no-interaction --no-progress
     - ./vendor/phpunit/phpunit/phpunit -v --coverage-text --colors=never --stderr
