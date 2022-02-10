@@ -3,7 +3,6 @@
 namespace BrilliantPackages\BetterUptimeLaravel\Tests;
 
 use Illuminate\Console\Scheduling\Schedule;
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Http;
 
 class CustomizationsTest extends TestCase

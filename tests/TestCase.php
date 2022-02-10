@@ -2,9 +2,9 @@
 
 namespace BrilliantPackages\BetterUptimeLaravel\Tests;
 
+use BrilliantPackages\BetterUptimeLaravel\BetterUptimeLaravelServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
-use BrilliantPackages\BetterUptimeLaravel\BetterUptimeLaravelServiceProvider;
 
 class TestCase extends Orchestra
 {
@@ -13,7 +13,7 @@ class TestCase extends Orchestra
         parent::setUp();
 
         Factory::guessFactoryNamesUsing(
-            fn (string $modelName) => 'BrilliantPackages\\BetterUptimeLaravel\\Database\\Factories\\'.class_basename($modelName).'Factory'
+            fn (string $modelName) => 'BrilliantPackages\\BetterUptimeLaravel\\Database\\Factories\\' . class_basename($modelName) . 'Factory'
         );
     }
 
