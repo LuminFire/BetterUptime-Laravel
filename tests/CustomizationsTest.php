@@ -34,34 +34,4 @@ class CustomizationsTest extends TestCase
         $this->assertStringContainsString('better-uptime:ping', $events[0]->command);
         $this->assertEquals('*/47 * * * *', $events[0]->expression);
     }
-
-    /** @test */
-    public function heartbeat_http_success()
-    {
-        Http::fake(['example.com/better-uptime-test' => Http::response()]);
-
-        $this->artisan('better-uptime:ping')
-            ->expectsOutput('Status 200')
-            ->assertExitCode(0);
-    }
-
-    /** @test */
-    public function heartbeat_http_fail_without_message()
-    {
-        Http::fake(['example.com/better-uptime-test' => Http::response('', 503)]);
-
-        $this->artisan('better-uptime:ping')
-            ->expectsOutput('Error code 503')
-            ->assertExitCode(1);
-    }
-
-    /** @test */
-    public function heartbeat_http_fail_with_message()
-    {
-        Http::fake(['example.com/better-uptime-test' => Http::response('Down for maintenance', 503)]);
-
-        $this->artisan('better-uptime:ping')
-            ->expectsOutput('Error code 503 with message Down for maintenance')
-            ->assertExitCode(1);
-    }
 }
