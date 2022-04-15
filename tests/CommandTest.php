@@ -84,4 +84,58 @@ class CommandTest extends TestCase
             return $request->url() === config('betteruptime-laravel.heartbeat.url');
         });
     }
+
+    /** @test */
+    public function heartbeat_http_success()
+    {
+        config([
+            'betteruptime-laravel.heartbeat.url' => 'example.com/better-uptime-test',
+        ]);
+
+        Http::fake([
+            'example.com/better-uptime-test' => Http::response(),
+        ]);
+
+        $this->artisan('better-uptime:ping')
+            ->expectsOutput('Status 200')
+            ->assertExitCode(Command::SUCCESS);
+    }
+
+    /** @test */
+    public function heartbeat_http_fail_without_message()
+    {
+        config([
+            'betteruptime-laravel.heartbeat.url' => 'example.com/better-uptime-test',
+        ]);
+
+        Http::fake([
+            'example.com/better-uptime-test' => Http::sequence()
+                                                    ->push('', 503)
+                                                    ->push('', 503)
+                                                    ->push('', 503)
+                                                    ->push('', 503)
+                                                    ->push('', 503),
+        ]);
+
+        $this->artisan('better-uptime:ping')
+            ->expectsOutput('Error code 503')
+            ->assertExitCode(Command::FAILURE);
+    }
+
+    /** @test */
+    public function heartbeat_http_fail_with_message()
+    {
+        Http::fake([
+            'example.com/better-uptime-test' => Http::sequence()
+                                                    ->push('Down for maintenance', 503)
+                                                    ->push('Down for maintenance', 503)
+                                                    ->push('Down for maintenance', 503)
+                                                    ->push('Down for maintenance', 503)
+                                                    ->push('Down for maintenance', 503),
+        ]);
+
+        $this->artisan('better-uptime:ping')
+            ->expectsOutput('Error code 503 with message Down for maintenance')
+            ->assertExitCode(Command::FAILURE);
+    }
 }
