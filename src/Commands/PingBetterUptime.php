@@ -41,15 +41,15 @@ class PingBetterUptime extends Command
     {
         if (! config('betteruptime-laravel.heartbeat.enabled')) {
             $this->error('BetterUptime heartbeat is disabled.');
-            return 0;
+            return self::SUCCESS;
         }
 
         if (empty(config('betteruptime-laravel.heartbeat.url'))) {
             $this->error('No uptime URL specified.');
-            return 1;
+            return self::FAILURE;
         }
 
-        $response = Http::head(config('betteruptime-laravel.heartbeat.url'));
+        $response = Http::retry(config('betteruptime-laravel.heartbeat.retry.count'), config('betteruptime-laravel.heartbeat.retry.delay'))->head(config('betteruptime-laravel.heartbeat.url'));
         if ($response->successful()) {
             $this->info('Status ' . $response->getStatusCode());
         } else {
@@ -61,9 +61,9 @@ class PingBetterUptime extends Command
 
             $this->error($errorString);
             Log::warning('PingBetterUptime failed; ' . $errorString);
-            return 1;
+            return self::FAILURE;
         }
 
-        return 0;
+        return self::SUCCESS;
     }
 }
