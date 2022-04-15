@@ -125,6 +125,10 @@ class CommandTest extends TestCase
     /** @test */
     public function heartbeat_http_fail_with_message()
     {
+        config([
+            'betteruptime-laravel.heartbeat.url' => 'example.com/better-uptime-test',
+        ]);
+
         Http::fake([
             'example.com/better-uptime-test' => Http::sequence()
                                                     ->push('Down for maintenance', 503)
@@ -135,7 +139,7 @@ class CommandTest extends TestCase
         ]);
 
         $this->artisan('better-uptime:ping')
-            ->expectsOutput('Error code 503 with message Down for maintenance')
+            ->expectsOutput('HTTP request returned status code 503:' . PHP_EOL . 'Down for maintenance' . PHP_EOL)
             ->assertExitCode(Command::FAILURE);
     }
 }

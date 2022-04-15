@@ -67,9 +67,10 @@ class PingBetterUptime extends Command
 
             return self::SUCCESS;
         } catch (RequestException $e) {
-            $errorString = 'Error code ' . $e->getCode();
             if ($e->getMessage() && 'HTTP request returned status code ' . $e->getCode() !== $e->getMessage()) {
-                $errorString .= ' with message ' . $e->getMessage();
+                $errorString = $e->getMessage();
+            } else {
+                $errorString = 'Error code ' . $e->getCode();
             }
 
             $this->error($errorString);
