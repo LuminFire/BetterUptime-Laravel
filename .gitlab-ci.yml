@@ -11,6 +11,7 @@ stages:
   - test
   - build
   - deploy
+  - release
 
 include:
   - project: 'templates/gitlab/ci-templates'
