@@ -2,6 +2,10 @@
 
 All notable changes to `betteruptime-laravel` will be documented in this file.
 
+# 1.1.1 - 2023-04-10
+
+- Feature: add Laravel 10 compatibility
+
 # 1.1.0 - 2022-04-15
 
 - Feature: add retry handling for heartbeat monitors
