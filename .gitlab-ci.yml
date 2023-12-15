@@ -13,10 +13,14 @@ stages:
   - deploy
   - release
 
+variables:
+  CLOUDFLARE_PAGES_PROJECT_NAME: betteruptime-laravel
+  # CLOUDFLARE_API_TOKEN: # add to GitLab CI/CD variable
+
 include:
   - project: 'templates/gitlab/ci-templates'
     file:
       - 'presets/php.yml'
       - 'test/phpunit.yml'
       - 'build/composer-package.yml'
-      - 'deploy/documentation/brilliantsolutions-docsify.yml'
+      - 'deploy/documentation/brilliantsolutions-cloudflare-pages.yml'
