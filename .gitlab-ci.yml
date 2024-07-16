@@ -16,11 +16,12 @@ stages:
 variables:
   CLOUDFLARE_PAGES_PROJECT_NAME: betteruptime-laravel
   # CLOUDFLARE_API_TOKEN: # add to GitLab CI/CD variable
+  PHP_VERSION: "8.3"
 
 include:
-  - project: 'templates/gitlab/ci-templates'
+  - project: "templates/gitlab/ci-templates"
     file:
-      - 'presets/php.yml'
-      - 'test/phpunit.yml'
-      - 'build/composer-package.yml'
-      - 'deploy/documentation/brilliantsolutions-cloudflare-pages.yml'
+      - "presets/php.yml"
+      - "test/phpunit.yml"
+      - "build/composer-package.yml"
+      - "deploy/documentation/brilliantsolutions-cloudflare-pages.yml"
