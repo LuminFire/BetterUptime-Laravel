@@ -2,6 +2,10 @@
 
 All notable changes to `betteruptime-laravel` will be documented in this file.
 
+# 1.1.3 - 2026-09-05
+
+- Bugfix: skip registering the heartbeat schedule when `heartbeat.url` is blank, instead of scheduling a ping that fails every run with "No uptime URL specified."
+
 # 1.1.2 - 2024-07-15
 
 - Feature: add Laravel 11 compatibility

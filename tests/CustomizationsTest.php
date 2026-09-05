@@ -7,15 +7,15 @@ use Illuminate\Support\Facades\Http;
 
 class CustomizationsTest extends TestCase
 {
-    public function getEnvironmentSetup($app)
+    public function getEnvironmentSetUp($app)
     {
+        parent::getEnvironmentSetUp($app);
+
         $app['config']->set('betteruptime-laravel.monitor.path', 'custom-route');
 
         $app['config']->set('betteruptime-laravel.heartbeat.enabled', true);
         $app['config']->set('betteruptime-laravel.heartbeat.url', 'https://example.com/better-uptime-test');
         $app['config']->set('betteruptime-laravel.heartbeat.minutes', 47);
-
-        parent::getEnvironmentSetUp($app);
     }
 
     /** @test */
