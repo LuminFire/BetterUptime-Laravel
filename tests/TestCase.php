@@ -8,6 +8,8 @@ use Orchestra\Testbench\TestCase as Orchestra;
 
 class TestCase extends Orchestra
 {
+    protected ?string $heartbeatUrl = null;
+
     public function setUp(): void
     {
         parent::setUp();
@@ -32,5 +34,6 @@ class TestCase extends Orchestra
             'database' => ':memory:',
             'prefix' => '',
         ]);
+        $app['config']->set('betteruptime-laravel.heartbeat.url', $this->heartbeatUrl);
     }
 }

@@ -53,7 +53,11 @@ class BetterUptimeLaravelServiceProvider extends PackageServiceProvider
      */
     public function packageBooted()
     {
-        if (config('betteruptime-laravel.heartbeat.enabled') && config('betteruptime-laravel.heartbeat.minutes')) {
+        if (
+            config('betteruptime-laravel.heartbeat.enabled')
+            && config('betteruptime-laravel.heartbeat.minutes')
+            && ! empty(config('betteruptime-laravel.heartbeat.url'))
+        ) {
             $this->callAfterResolving(Schedule::class, function (Schedule $schedule) {
                 $schedule->command('better-uptime:ping')->cron('*/' . config('betteruptime-laravel.heartbeat.minutes') . ' * * * *');
             });
